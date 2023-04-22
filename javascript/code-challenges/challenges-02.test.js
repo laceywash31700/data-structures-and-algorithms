@@ -24,8 +24,7 @@ Write a function named addOne that, given an array of numbers, uses map to retur
 
 const addOne = (arr) => {
   // Solution code here...
-  const output = arr.map(v => v += 1);
-  return output;
+  return arr.map(v => v += 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -36,8 +35,8 @@ Write a function named addQuestion that, given an array of strings, uses map to 
 
 const addQuestion = (arr) => {
   // Solution code here...
-  const output = arr.map(v => `${v}?`);
-  return output;
+  return arr.map(v => `${v}?`);
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -118,7 +117,6 @@ function evenOddHelper(num){
 
 const evenOdd = (arr) => {
   // Solution code here.
-
   return arr.map(v => evenOddHelper(v));
 };
 
