@@ -171,7 +171,7 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
-  return arr.sort((a,b)=> a.lastName.localeCompare(b.lastName) || a.firstName.localeCompare(b.firstName) || a.age - b.age);
+  return arr.sort((a, b) => a.lastName.localeCompare(b.lastName) || a.firstName.localeCompare(b.firstName) || a.age - b.age);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -199,16 +199,18 @@ const meetings = [
 const sortMeetingsByDay = (arr) => {
   // Solution code here...
   const dayOrder = {
-    Monday: 1,
-    Tuesday: 2,
-    Wednesday: 3,
-    Thursday: 4,
-    Friday: 5,
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6,
   };
-  return arr.sort((a,b) =>{
-
+  return arr.sort((a, b) => {
+    const dayA = a.dayOfWeek;
     const dayB = b.dayOfWeek;
-    ;
+    return dayOrder[dayA] - dayOrder[dayB];
   });
 };
 
@@ -224,6 +226,25 @@ You DO NOT need to use your solution to Challenge 12 in completing Challenge 13.
 
 const sortSchedule = (arr) => {
   // Solution code here...
+  const dayOrder = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6,
+  };
+  return arr.sort((a, b) => {
+    if (a.dayOfWeek !== b.dayOfWeek) {
+      const dayA = a.dayOfWeek;
+      const dayB = b.dayOfWeek;
+      return dayOrder[dayA] - dayOrder[dayB];
+    } else if (a.start !== b.start) {
+      return parseInt(a.start) - parseInt(b.start);
+    } else {
+      return parseInt(a.end) - parseInt(b.end);
+    }});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -357,7 +378,7 @@ describe('Testing challenge 11', () => {
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should sort meetings by the day on which they happen', () => {
     const sortedMeetings = sortMeetingsByDay(meetings);
     expect(sortedMeetings.slice(0, 2)).toEqual(expect.arrayContaining([new Meeting('Monday', '0900', '0945'), new Meeting('Monday', '0900', '1000')]));
@@ -367,7 +388,7 @@ xdescribe('Testing challenge 12', () => {
   });
 });
 
-xdescribe('Testing challenge 13', () => {
+describe('Testing challenge 13', () => {
   test('It should sort meetings by when they happen', () => {
     expect(sortSchedule(meetings)).toStrictEqual([
       new Meeting('Monday', '0900', '0945'),
