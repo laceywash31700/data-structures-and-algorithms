@@ -1,5 +1,7 @@
 'use strict';
 
+const { val } = require("cheerio/lib/api/attributes");
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -137,7 +139,9 @@ let starWarsData = [{
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
-  data.filter 
+  return data.filter(v => v.gender === 'male' || v.gender === 'female')
+    .map(val => val.name)
+    .join(' and ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -148,6 +152,12 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 
 let findShortest = (data) => {
   // Solution code here...
+  const output = data.reduce((shortest, val) => {
+    return (parseInt(val.height) <= parseInt(shortest.height))
+      ? val
+      : shortest;
+  });
+  return output.name;
 };
 
 /* ------------------------------------------------------------------------------------------------

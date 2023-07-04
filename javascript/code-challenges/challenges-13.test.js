@@ -14,7 +14,6 @@ const longestString = (arr) => {
 
   let output = arr.reduce((longIdx, currStr, currIdx) =>
     currStr.length > arr[longIdx].length ? currIdx : longIdx, 0);
-  console.log(output);
   return output;
 };
 
@@ -68,7 +67,8 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  // Solution code here...
+
+  return str.split('').filter((_,idx) => idx % 2 !== 0).join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -79,6 +79,7 @@ Write a function named allHappy that takes in an array of strings and returns a 
 
 const allHappy = (arr) => {
   // Solution code here...
+  return arr.every(str => str.includes(':)'));
 };
 
 /* ------------------------------------------------------------------------------------------------

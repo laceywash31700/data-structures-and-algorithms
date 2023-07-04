@@ -245,7 +245,7 @@ describe('Testing challenge 4', () => {
   test('It should return false if the input does not contain the word "world"', () => {
     expect(containsWorld('hello everyone')).toBe(false);
   });
-})
+});
 
 describe('Testing challenge 5', () => {
   test('It should only return words that begin with a capital letter', () => {
