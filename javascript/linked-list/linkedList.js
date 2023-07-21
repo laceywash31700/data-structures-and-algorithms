@@ -77,6 +77,62 @@ class LinkedList {
     returnStr += 'NULL';
     return returnStr;
   }
+
+  // append
+  // arguments: new value
+  // adds a new node with the given value to the end of the list
+  append(value){
+    let current = this.head;
+    while(current){
+      current = current.next;
+    }
+    if(!current.next) current.next = new Node(value);
+  }
+
+  // insert before
+  // arguments: value, new value
+  // adds a new node with the given new value immediately before the first node that has the value specified
+  insertBefore(val,newVal){
+    let insert = new Node(newVal);
+    if (!this.head) return (this.head = insert);
+    if (this.head.value === val) {
+      insert.next = this.head;
+      this.head = insert;
+      return;
+    }
+    let current = this.head;
+    while(current){
+      if(current.next.value === val){
+        let temp = current.next;
+        current.next = insert;
+        insert.next = temp;
+        return;
+      }
+      else {
+        current = current.next;
+      }}
+  }
+
+  //     insert after
+  // arguments: value, new value
+  // adds a new node with the given new value immediately after the first node that has the value specified
+  insertAfter(val,newVal){
+    let insert = new Node(newVal);
+    if (!this.head) return (this.head = insert);
+    let current = this.head;
+    while(current){
+      if(current.value === val){
+        current = current.next;
+        let temp = current.next;
+        current.next = insert;
+        insert.next = temp;
+        return;
+      }
+      else {
+        current = current.next;
+      }}
+  }
+
 }
 
 module.exports = { LinkedList, Node };
