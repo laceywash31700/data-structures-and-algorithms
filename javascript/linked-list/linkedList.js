@@ -17,6 +17,8 @@ class Node {
 class LinkedList {
   constructor(head = null) {
     this.head = head;
+    this.tail = this.getTail();
+    this.length = 0;
   }
 
   traversalCheatSheet() {
@@ -26,10 +28,10 @@ class LinkedList {
     }
   }
 
-  altTraversalCheatSheet() {
+  getTail() {
     /// return the last node of the list or something... count them??
     let current = this.head;
-    while (current.next) {
+    while (current && current.next) {
       // conditional chaining
       current = current.next;
     }
@@ -38,12 +40,15 @@ class LinkedList {
 
   // insert
   insert(value) {
+    let newNode = new Node(value);
     if (!this.head) {
-      this.head = new Node(value);
+      this.head = newNode;
+      this.length += 1;
     } else {
-      const temp = new Node(value);
+      const temp = newNode;
       temp.next = this.head;
       this.head = temp;
+      this.length += 1;
     }
   }
 
@@ -81,58 +86,89 @@ class LinkedList {
   // append
   // arguments: new value
   // adds a new node with the given value to the end of the list
-  append(value){
+  append(value) {
     let current = this.head;
-    while(current){
+    while (current) {
       current = current.next;
     }
-    if(!current.next) current.next = new Node(value);
+    if (!current.next) {
+      current.next = new Node(value);
+      this.length += 1;
+    }
   }
 
   // insert before
   // arguments: value, new value
   // adds a new node with the given new value immediately before the first node that has the value specified
-  insertBefore(val,newVal){
+  insertBefore(val, newVal) {
     let insert = new Node(newVal);
-    if (!this.head) return (this.head = insert);
+    if (!this.head)
+    {
+      this.length += 1;
+      return this.head = insert;
+    }
     if (this.head.value === val) {
       insert.next = this.head;
       this.head = insert;
+      this.length += 1;
       return;
     }
     let current = this.head;
-    while(current){
-      if(current.next.value === val){
+    while (current) {
+      if (current.next.value === val) {
         let temp = current.next;
         current.next = insert;
         insert.next = temp;
+        this.length += 1;
         return;
-      }
-      else {
+      } else {
         current = current.next;
-      }}
+      }
+    }
   }
 
   //     insert after
   // arguments: value, new value
   // adds a new node with the given new value immediately after the first node that has the value specified
-  insertAfter(val,newVal){
+  insertAfter(val, newVal) {
     let insert = new Node(newVal);
-    if (!this.head) return (this.head = insert);
+    if (!this.head) {
+      this.length += 1;
+      return this.head = insert;
+    }
     let current = this.head;
-    while(current){
-      if(current.value === val){
+    while (current) {
+      if (current.value === val) {
         current = current.next;
         let temp = current.next;
         current.next = insert;
         insert.next = temp;
+        this.length += 1;
         return;
-      }
-      else {
+      } else {
         current = current.next;
-      }}
+      }
+    }
   }
 
+  //   kth from end
+  // argument: a number, k, as a parameter.
+  // Return the node’s value that is k places from the tail of the linked list.
+  // You have access to the Node class and all the properties on the Linked List class as well as the methods created in previous challenges.
+  nthFromTheEnd(n) {
+    if(n > this.length){
+      return 'this exceeds the list length';
+    }else {
+      let traversalNumber = this.length - n;
+      let current = this.head;
+      while(traversalNumber){
+        traversalNumber -= 1;
+        current = current.next;
+        if(traversalNumber === 0){
+          return current.value;
+        }
+      }}
+  }
 }
 
 module.exports = { LinkedList, Node };
