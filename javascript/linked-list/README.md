@@ -4,6 +4,7 @@
 
 ![whiteBoard for challenge 5](./CODE-CHALLENGE-5.png)
 ![whiteBoard for challenge 6](./CODE-CHALLENGE%206.png)
+![whiteBoard for challenge 7](./Code-Challenge-07.jpg)
 
 ## Approach & Efficiency
 
@@ -13,7 +14,12 @@ CODE CHALLENGE 5
 CODE CHALLENGE 6
   I  wasn't really sweating this one but i do need to work on my testing skills I slept after class and almost forgot to turn this guy in.
 
+Code Challenge 7
+
+  I didn't get the test done in time but it was was able to find a viable solution.
+
 ## Solution
 
 ![CODE SOLUTION CHALLENGE 5](./CODE.png)
 ![CODE SOLUTION CHALLENGE 6](./CODE%206.jpg)
+![CODE SOLUTION CHALLENGE 7](./CODE-7.jpg)
