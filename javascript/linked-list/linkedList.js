@@ -102,10 +102,9 @@ class LinkedList {
   // adds a new node with the given new value immediately before the first node that has the value specified
   insertBefore(val, newVal) {
     let insert = new Node(newVal);
-    if (!this.head)
-    {
+    if (!this.head) {
       this.length += 1;
-      return this.head = insert;
+      return (this.head = insert);
     }
     if (this.head.value === val) {
       insert.next = this.head;
@@ -134,7 +133,7 @@ class LinkedList {
     let insert = new Node(newVal);
     if (!this.head) {
       this.length += 1;
-      return this.head = insert;
+      return (this.head = insert);
     }
     let current = this.head;
     while (current) {
@@ -151,23 +150,46 @@ class LinkedList {
     }
   }
 
+  zipList(LL1, LL2) {
+    if(!LL1.head && !LL2.head){
+      return new LinkedList();
+    }
+
+    let current = LL1.head;
+    let current2 = LL2.head;
+    let newLinkedList = new LinkedList();
+
+    while(current || current2){
+      if(current){
+        newLinkedList.append(current.value);
+        current = current.next;
+      }
+      if(current2){
+        newLinkedList.append(current2.value);
+        current2 = current2.next;
+      }
+    }
+    return newLinkedList;
+  }
+
   //   kth from end
   // argument: a number, k, as a parameter.
   // Return the node’s value that is k places from the tail of the linked list.
   // You have access to the Node class and all the properties on the Linked List class as well as the methods created in previous challenges.
   nthFromTheEnd(n) {
-    if(n > this.length){
+    if (n > this.length) {
       return 'this exceeds the list length';
-    }else {
+    } else {
       let traversalNumber = this.length - n;
       let current = this.head;
-      while(traversalNumber){
+      while (traversalNumber) {
         traversalNumber -= 1;
         current = current.next;
-        if(traversalNumber === 0){
+        if (traversalNumber === 0) {
           return current.value;
         }
-      }}
+      }
+    }
   }
 }
 
