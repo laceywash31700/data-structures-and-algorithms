@@ -79,7 +79,6 @@ class BinarySearchTree extends BasicTree {
     } else {
       root.right = this._insertRecursive(root.right, value);
     }
-
     return root;
   }
 }
