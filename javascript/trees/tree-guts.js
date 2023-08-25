@@ -54,8 +54,6 @@ class BasicTree {
   }
 }
 
-
-
 class BinarySearchTree extends BasicTree {
   constructor(root = null) {
     super(root);
@@ -72,13 +70,27 @@ class BinarySearchTree extends BasicTree {
 
     if (value === root.value) {
       return root;
-    }
-
-    else if (value < root.value) {
+    } else if (value < root.value) {
       root.left = this._insertRecursive(root.left, value);
     } else {
       root.right = this._insertRecursive(root.right, value);
     }
     return root;
   }
+
+  getMax(node = this.root) {
+    if (!node) {
+      return null;
+    }
+    if (!node.right) {
+      return node.value;
+    }
+    return this.getMax(node.right);
+  }
 }
+
+module.exports = {
+  Node,
+  BinarySearchTree,
+  BasicTree,
+};
