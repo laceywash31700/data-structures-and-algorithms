@@ -1,5 +1,7 @@
 'use strict';
 
+const Queue = require('../stack-and-queue/queue.js');
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -9,6 +11,7 @@ class Node {
     this.previous = null;
   }
 }
+
 class BasicTree {
   constructor(root = null) {
     this.root = root;
@@ -22,8 +25,6 @@ class BasicTree {
     results.push(node.value);
     this.preOrder(node.left, results);
     this.preOrder(node.right, results);
-
-    console.log('This is pre-order:', results);
     return results;
   }
 
@@ -35,8 +36,6 @@ class BasicTree {
     this.inOrder(node.left, results);
     results.push(node.value);
     this.inOrder(node.right, results);
-
-    console.log('This is in-order:', results);
     return results;
   }
 
@@ -48,8 +47,31 @@ class BasicTree {
     this.postOrder(node.left, results);
     this.postOrder(node.right, results);
     results.push(node.value);
+    return results;
+  }
 
-    console.log('This is post-order:', results);
+  // breadth first traversal
+  breadthFirst() {
+    const results = [];
+    const traversalQueue = new Queue();
+
+    if (this.root === null) {
+      return results;
+    }
+
+    traversalQueue.enqueue(this.root);
+
+    while (!traversalQueue.isEmpty()) {
+      const currentNode = traversalQueue.dequeue();
+      results.push(currentNode.value);
+
+      if (currentNode.left) {
+        traversalQueue.enqueue(currentNode.left);
+      }
+      if (currentNode.right) {
+        traversalQueue.enqueue(currentNode.right);
+      }
+    }
     return results;
   }
 }

@@ -1,7 +1,5 @@
 const { Node, BinarySearchTree } = require('../tree-guts');
 
-
-
 describe('Tree Traversal Tests', () => {
   let rootNode;
   let binarySearchTree;
@@ -17,7 +15,6 @@ describe('Tree Traversal Tests', () => {
 
     binarySearchTree = new BinarySearchTree(rootNode);
   });
-  
   test('Pre-order traversal', () => {
     const expectedResult = [10, 5, 3, 7, 15, 12, 20];
     const result = binarySearchTree.preOrder();
@@ -38,5 +35,10 @@ describe('Tree Traversal Tests', () => {
     const maxValue = binarySearchTree.getMax();
     expect(maxValue).toBe(20);
   });
+  test('breadth first traversal', () => {
+    let expectedResult = [10, 5, 15, 3, 7, 12, 20];
+    let actualResult = binarySearchTree.breadthFirst();
+    console.log('+++++++++',actualResult);
+    expect(actualResult).toStrictEqual(expectedResult);
+  });
 });
-

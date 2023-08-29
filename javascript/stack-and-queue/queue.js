@@ -14,17 +14,16 @@ class Queue {
   }
 
   isEmpty() {
-    this.front ? true : false;
+    return this.front === null;
   }
 
   enqueue(val) {
     const newNode = new Node(val);
     if (!this.front) {
-      this.rear = newNode;
-      this.front = this.rear;
+      this.front = newNode;
+      this.rear = this.front;
     } else {
-      let current = this.rear;
-      newNode.next = current;
+      this.rear.next = newNode;
       this.rear = newNode;
     }
   }
@@ -36,7 +35,7 @@ class Queue {
     let current = this.front;
     this.front = current.next;
     current.next = null;
-    return current;
+    return current.value;
   }
 
   peek() {
@@ -57,6 +56,9 @@ class Queue {
     returnStr += 'NULL';
     return returnStr;
   }
+
 }
+
+
 
 module.exports = Queue;
