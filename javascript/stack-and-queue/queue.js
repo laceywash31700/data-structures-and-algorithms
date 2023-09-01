@@ -17,8 +17,9 @@ class Queue {
     return this.front === null;
   }
 
-  enqueue(val) {
-    const newNode = new Node(val);
+  enqueue(node = null,value = null ) {
+    if ()
+    const newNode = new Node(value);
     if (!this.front) {
       this.front = newNode;
       this.rear = this.front;
