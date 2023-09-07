@@ -18,14 +18,25 @@ class Queue {
   }
 
   enqueue(node = null,value = null ) {
-    if ()
-    const newNode = new Node(value);
-    if (!this.front) {
-      this.front = newNode;
-      this.rear = this.front;
-    } else {
-      this.rear.next = newNode;
-      this.rear = newNode;
+    if (node){
+      if (!this.front) {
+        this.front = node;
+        this.rear = this.front;
+      } else {
+        this.rear.next = node;
+        this.rear = node;
+      }
+    }
+    if (value)
+    {
+      const newNode = new Node(value);
+      if (!this.front) {
+        this.front = newNode;
+        this.rear = this.front;
+      } else {
+        this.rear.next = newNode;
+        this.rear = newNode;
+      }
     }
   }
 

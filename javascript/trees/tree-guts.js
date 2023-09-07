@@ -109,6 +109,45 @@ class BinarySearchTree extends BasicTree {
     }
     return this.getMax(node.right);
   }
+
+  _fizzBuzzHelper(number) {
+    if (number % 15 === 0) {
+      return `fizz-buzz - ${number}`;
+    } else if (number % 3 === 0) {
+      return `fizz - ${number}`;
+    } else if (number % 5 === 0) {
+      return `buzz - ${number}`;
+    } else {
+      return `no fizz-buzz - ${number}`;
+    }
+  }
+
+  processFizzBuzz(root = this.root) {
+    if (!root) {
+      return null;
+    }
+
+    const newTree = new Node(this._fizzBuzzHelper(root.value));
+
+    const queue = new Queue();
+    queue.enqueue(root);
+    const newTreeQueue = new Queue();
+    newTreeQueue.enqueue(newTree);
+
+    while (!queue.isEmpty()) {
+      const current = queue.dequeue();
+      const newCurrent = newTreeQueue.dequeue();
+
+      for (const child of current.children) {
+        queue.enqueue(child);
+        const newChild = new Node(this._fizzBuzzHelper(child.value));
+        newCurrent.children.push(newChild);
+        newTreeQueue.enqueue(newChild);
+      }
+    }
+
+    return newTree;
+  }
 }
 
 module.exports = {
