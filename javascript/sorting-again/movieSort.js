@@ -4,7 +4,7 @@ const data = require('./db.json');
 
 
 function sortByRecentYear(movies) {
-    return movies.sort((a, b) => b.year - a.year);
+    return movies.sort((a, b) => a.year - b.year);
 }
 
 function sortByTitle(movies) {
