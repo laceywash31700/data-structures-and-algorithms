@@ -1,4 +1,4 @@
-const { sortByRecentYear, sortByTitle } = require('./movieSort'); // replace with the actual path to your sorting module
+const { sortByRecentYear, sortByTitle } = require('./movieSort');
 const data = require('./db.json');
 
 test('sortByRecentYear sorts movies by most recent year first', () => {
