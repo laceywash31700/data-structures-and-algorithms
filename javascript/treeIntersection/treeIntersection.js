@@ -16,7 +16,7 @@ function treeIntersection(root1, root2) {
   const table = new HashTable();
   let output = [];
 
-  function _treeTraversalPreOrder(node = null, results = []) {
+  function _treeTraversalPreOrder(node, results = []) {
     if (node === null || node === undefined) {
       return new Error('not valid tree');
     }
