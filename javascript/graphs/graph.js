@@ -39,15 +39,17 @@ class Graph {
   // If specified, assign a weight to the edge
   // Both vertices should already be in the Graph
   addEdge(startNode, endNode, weight) {
-    if (!this.adjacencyList.has(startNode) || !this.adjacencyList.has(endNode)) {
-      throw new Error("Invalid vertices");
+    if (
+      !this.adjacencyList.has(startNode) ||
+      !this.adjacencyList.has(endNode)
+    ) {
+      throw new Error('Invalid vertices');
     }
-  
+
     let edges = this.adjacencyList.get(startNode);
     const newEdge = new Edge(startNode, endNode, weight);
     edges.push(newEdge); // Add the new edge to the list of edges for the startNode
   }
-  
 
   addUndirectedEdge(a, b, weight) {
     this.addEdge(a, b, weight);
@@ -91,6 +93,31 @@ class Graph {
   size() {
     return this.adjacencyList.size;
   }
-}
 
-module.exports = {Graph , Node };
+  // graph-breadth-first traversal
+  graphBreadthTraversal(vertex) {
+    let vistedVertex = new Map();
+    let queue = [];
+    let output = [];
+
+    queue.push(vertex);
+
+    while (queue.length > 0) {
+      let currentVertex = queue.shift();
+
+      if (!vistedVertex.has(currentVertex.value)) {
+        vistedVertex.set(currentVertex.value, currentVertex);
+        output.push(currentVertex.value);
+
+        this.getNeighbors(currentVertex).forEach((neighbor) => {
+          if (!vistedVertex.has(neighbor.value)) {
+            queue.push(neighbor);
+          }
+        });
+      }
+    }
+
+    return output;
+  }
+}
+module.exports = { Graph, Node };

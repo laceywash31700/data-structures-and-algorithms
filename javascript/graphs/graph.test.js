@@ -39,4 +39,24 @@ describe('Graph', () => {
     const neighbors = graph.getNeighbors(vertex);
     expect(neighbors).toBeNull();
   });
+
+    test('Breadth-First Traversal starting from node 1', () => {
+      const graph = new Graph();
+      const node1 = graph.addVertex(1);
+      const node2 = graph.addVertex(2);
+      const node3 = graph.addVertex(3);
+      const node4 = graph.addVertex(4);
+      const node5 = graph.addVertex(5);
+      
+      graph.addUndirectedEdge(node1, node2);
+      graph.addUndirectedEdge(node1, node3);
+      graph.addUndirectedEdge(node2, node4);
+      graph.addUndirectedEdge(node3, node5);
+  
+      const traversalResult = graph.graphBreadthTraversal(node1);
+      expect(traversalResult).toEqual([1, 2, 3, 4, 5]);
+    });
+  
+
+  
 });
