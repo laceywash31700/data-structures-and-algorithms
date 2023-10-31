@@ -17,7 +17,7 @@ describe('Graph', () => {
   test('should add edges between vertices', () => {
     const vertex1 = graph.addVertex(1);
     const vertex2 = graph.addVertex(2);
-    graph.UndirectedEdge(vertex1, vertex2, 10);
+    graph.addUndirectedEdge(vertex1, vertex2, 10);
     expect(graph.getEdges(vertex1).length).toBe(1);
     expect(graph.getEdges(vertex2).length).toBe(1);
   });
