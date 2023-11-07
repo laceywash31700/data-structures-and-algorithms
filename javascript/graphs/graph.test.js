@@ -57,6 +57,20 @@ describe('Graph', () => {
       expect(traversalResult).toEqual([1, 2, 3, 4, 5]);
     });
   
-
+    test('should perform depth-first traversal correctly', () => {
+      const graph = new Graph();
+      const node1 = graph.addVertex(1);
+      const node2 = graph.addVertex(2);
+      const node3 = graph.addVertex(3);
+      const node4 = graph.addVertex(4);
+  
+      graph.addUndirectedEdge(node1, node2);
+      graph.addEdge(node1, node3);
+      graph.addEdge(node2, node4);
+  
+      const startNode = node1;
+      const traversalResult = graph.depthFirst(startNode);
+      expect(traversalResult.map(node => node.value)).toEqual([1, 2, 4, 3]);
+    });
   
 });

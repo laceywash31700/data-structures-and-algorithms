@@ -119,5 +119,24 @@ class Graph {
 
     return output;
   }
+
+  // depth-First Traversal
+  depthFirst(startNode) {
+    const visited = new Set();
+    const result = [];
+
+    const dfsHelper = (node) => {
+      visited.add(node);
+      result.push(node);
+      for (const neighbor of node.neighbors) {
+        if (!visited.has(neighbor)) {
+          dfsHelper(neighbor);
+        }
+      }
+    };
+
+    dfsHelper(startNode);
+    return result;
+  }
 }
 module.exports = { Graph, Node };
