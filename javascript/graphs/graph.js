@@ -135,7 +135,7 @@ class Graph {
         }
       }
     };
-
+    // adding note to push this up
     dfsHelper(startNode);
     return result;
   }
