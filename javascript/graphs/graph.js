@@ -128,13 +128,14 @@ class Graph {
     const dfsHelper = (node) => {
       visited.add(node);
       result.push(node);
-      for (const neighbor of node.neighbors) {
+      const neighbors = this.getNeighbors(node);
+      for (const neighbor of neighbors) { 
         if (!visited.has(neighbor)) {
           dfsHelper(neighbor);
         }
       }
     };
-
+    // adding note to push this up
     dfsHelper(startNode);
     return result;
   }
